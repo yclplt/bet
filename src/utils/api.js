@@ -1,5 +1,4 @@
 import axios from 'axios'
-import { apiUrl } from '@/cofigs'
 
 export class ApiError {
     message
@@ -15,7 +14,7 @@ const dateTransformer = (data) => {
 }
 
 export const api = axios.create({
-    baseURL: apiUrl,
+    baseURL: 'https://nesine-case-study.onrender.com/',
     transformRequest: [dateTransformer].concat(axios.defaults.transformRequest ?? []),
     withCredentials: false,
 })

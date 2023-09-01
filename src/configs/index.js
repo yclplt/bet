@@ -1,7 +1,5 @@
 import { createUnknownSnackbar } from '@/utils'
 
-export const apiUrl = 'https://nesine-case-study.onrender.com/'
-
 export const queryClientConfig = {
     defaultOptions: {
         queries: {
