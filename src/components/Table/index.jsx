@@ -1,5 +1,5 @@
 import React, { useReducer, useEffect } from 'react';
-import { FixedSizeList as List } from 'react-window';
+import { VariableSizeList as List } from 'react-window';
 
 const initialState = {
     selectedCells: [],
@@ -37,7 +37,11 @@ function reducer(state, action) {
 
 const Table = ({ columns, data = [], onSelect }) => {
     const [state, dispatch] = useReducer(reducer, initialState);
-    const rowHeight = 40;
+    const rowCellHeight = 25;
+    const rowHeaderHeight = 50;
+    const cellMinWidth = 50
+
+    const rowHeight = (index) => (index % 2 === 0 ? rowCellHeight : rowHeaderHeight);
 
     useEffect(() => {
         onSelect(state.selectedCells);
@@ -48,7 +52,7 @@ const Table = ({ columns, data = [], onSelect }) => {
             <div
                 key={column?.accessorKey}
                 className="header-cell"
-                style={{ minWidth: column?.width ?? 'max-width' }}
+                style={{ minWidth: column?.width || cellMinWidth }} 
             >
                 {column?.header}
             </div>
@@ -80,6 +84,8 @@ const Table = ({ columns, data = [], onSelect }) => {
         );
         const isClickable = !isHeader && columns?.[columnIndex]?.clickable;
 
+        const textAlign = columns?.[columnIndex]?.textAlign || ''; // textAlign özelliği
+
         const cellClassNames = ['table-cell'];
 
         if (isSelected) {
@@ -89,6 +95,8 @@ const Table = ({ columns, data = [], onSelect }) => {
         if (isClickable) {
             cellClassNames.push('clickable');
         }
+        
+        cellClassNames.push(textAlign);
 
         return cellClassNames.join(' ');
     };
@@ -106,17 +114,22 @@ const Table = ({ columns, data = [], onSelect }) => {
     };
 
     return (
-        <div className="table-container">
+        <div className="table-container" >
             <div className="header-row">{getHeaders()}</div>
-            <List height={400} itemCount={data?.length * 2} itemSize={rowHeight}>
+            <List
+                height={window.innerHeight}
+                width={window.innerWidth}
+                itemCount={data?.length * 2}
+                itemSize={rowHeight}
+                >
                 {({ index, style }) => (
                     <div style={style} className="table-row">
                         {columns.map((column, columnIndex) => (
                             <div
                                 key={column?.accessorKey}
                                 className={getCellClassName(index, columnIndex)}
-                                style={{ minWidth: column?.width ?? 'min-width' }}
                                 onClick={() => handleCellClick(index, columnIndex, renderCellValue(column, index))}
+                                style={{ minWidth: column?.width || cellMinWidth }}
                             >
                                 {renderCellValue(column, index)}
                             </div>

@@ -12,6 +12,7 @@ const HomePage = () => {
                 header: 'Event Count: 3000',
                 width: 350,
                 bodyHide: true,
+                textAlign: 'left',
                 renderValue: ({ row }) => <div><b>{row?.C}</b> {row?.T} {row?.N}</div>    ,
                 headerValue: ({ row }) => `${row?.D} ${row?.DAY} ${row?.LN}`      
             },
@@ -94,7 +95,7 @@ const HomePage = () => {
             },
             {
                 accessorKey: 'isCheck',
-                header: 'var',
+                header: 'Var',
             },
             {
                 accessorKey: 'isCheck1',

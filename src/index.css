@@ -4,6 +4,7 @@ body, #root {
   width: 100%;
   height: 100%;
   font-family: Arial, sans-serif;
+  overflow: hidden;
 }
 
 .container {
@@ -33,6 +34,7 @@ body, #root {
   position: sticky;
   top: 0;
   background-color: #f2f2f2;
+  z-index: 1;
 }
 
 .header-cell, .table-cell {
@@ -46,6 +48,10 @@ body, #root {
 
 .table-cell.selected{
   background-color: yellow;
+}
+
+.table-cell.left {
+  justify-content: left;
 }
 
 .even {
