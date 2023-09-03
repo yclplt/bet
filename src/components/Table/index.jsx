@@ -123,7 +123,6 @@ const Table = ({ columns, data = [], onSelect, loading }) => {
                     <AutoSizer>
                         {({ height, width }) => (
                             <List
-                                ref={listRef}
                                 height={height}
                                 width={width}
                                 itemCount={data?.length}
