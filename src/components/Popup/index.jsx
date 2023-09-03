@@ -1,6 +1,7 @@
 import React from 'react';
-import './popup.css';
 import { useData } from '../../DataContext';
+import { Currency } from '@/utils'
+import './popup.css';
 
 const Popup = () => {
     const { betData } = useData();
@@ -27,7 +28,7 @@ const Popup = () => {
                     </div>
                 ))}
             </div>
-            <div className="popup-total">Toplam: {formattedResult}</div>
+            <div className="popup-total">Toplam: {formattedResult} {Currency}</div>
         </div>
     );
 };

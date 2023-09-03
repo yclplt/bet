@@ -8,3 +8,5 @@ export const createUnknownSnackbar = (err) => {
         enqueueSnackbar('Error Request', { variant: 'error' })
     }
 }
+
+export const Currency = 'TL';
