@@ -1,9 +1,11 @@
-import React, { useMemo } from 'react'
+import React, { useMemo, useState } from 'react'
 import { useBets } from '@/hooks'
-import { Table } from '@/components'
+import { Table, Popup } from '@/components'
+import { useData } from '../../DataContext';
 
 const HomePage = () => {
-    const { data, status } = useBets()
+    const { data, isLoading } = useBets()
+    const { setBetData } = useData();
 
     const columns = useMemo(
         () => [
@@ -13,8 +15,8 @@ const HomePage = () => {
                 width: 350,
                 bodyHide: true,
                 textAlign: 'left',
-                renderValue: ({ row }) => <div><b>{row?.C}</b> {row?.T} {row?.N}</div>    ,
-                headerValue: ({ row }) => `${row?.D} ${row?.DAY} ${row?.LN}`      
+                renderValue: ({ row }) => <div><b>{row?.C}</b> {row?.T} {row?.N}</div>,
+                headerValue: ({ row }) => `${row?.D} ${row?.DAY} ${row?.LN}`
             },
             {
                 accessorKey: 'comments',
@@ -111,7 +113,10 @@ const HomePage = () => {
     );
 
     return (
-        <Table columns={columns} data={data} onSelect={(item) => console.log(item)} />
+        <>
+            <Table columns={columns} data={data} onSelect={(item) => setBetData(item)} />
+            <Popup />
+        </>
     )
 }
 
