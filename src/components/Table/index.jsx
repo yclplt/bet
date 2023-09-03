@@ -1,5 +1,6 @@
 import React, { useReducer, useEffect } from 'react';
 import { VariableSizeList as List } from 'react-window';
+import './table.css';
 
 const initialState = {
     selectedCells: [],

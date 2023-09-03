@@ -24,11 +24,11 @@
     border-bottom: 1px solid #ccc;
 }
 
-.popup-row>div{
+.popup-row>div {
     padding-right: 10px;
 }
 
-.popup-row>div.content{
+.popup-row>div.content {
     display: flex;
     flex: 1;
 }
@@ -37,7 +37,7 @@
     font-weight: bold;
 }
 
-.popup>.popup-total{
+.popup>.popup-total {
     font-weight: bold;
     font-size: 20px;
     padding-top: 10px;
