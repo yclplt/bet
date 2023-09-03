@@ -3,7 +3,6 @@ import { QueryClient, QueryClientProvider } from '@tanstack/react-query'
 import { SnackbarProvider } from 'notistack'
 import { queryClientConfig } from '@/configs'
 import Pages from './pages'
-import './App.css'
 
 const queryClient = new QueryClient(queryClientConfig)
 
