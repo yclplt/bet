@@ -3,6 +3,7 @@ import { QueryClient, QueryClientProvider } from '@tanstack/react-query'
 import { SnackbarProvider } from 'notistack'
 import { queryClientConfig } from '@/configs'
 import Pages from './pages'
+import { DataProvider } from './DataContext';
 
 const queryClient = new QueryClient(queryClientConfig)
 
@@ -17,7 +18,9 @@ function App() {
       }}
     >
       <QueryClientProvider client={queryClient}>
-        <Pages />
+        <DataProvider>
+          <Pages />
+        </DataProvider>
       </QueryClientProvider>
     </SnackbarProvider>
   )
