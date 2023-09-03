@@ -21,6 +21,7 @@ const HomePage = () => {
             {
                 accessorKey: 'comments',
                 header: 'Yorumlar',
+                width: 60,
                 renderValue: () => `Yorumlar`
             },
             {

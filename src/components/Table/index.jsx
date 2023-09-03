@@ -41,7 +41,7 @@ const Table = ({ columns, data = [], onSelect, loading }) => {
     const [state, dispatch] = useReducer(reducer, initialState);
     const rowCellHeight = 25;
     const rowHeaderHeight = 50;
-    const cellMinWidth = 50
+    const cellMinWidth = 40
 
     const rowHeight = (index) => (index % 2 === 0 ? rowCellHeight : rowHeaderHeight);
 
