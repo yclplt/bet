@@ -67,8 +67,7 @@ const Table = ({ columns, data = [], onSelect }) => {
                     columnIndex,
                     data: data?.[index],
                     cellData,
-                },
-                onSelect
+                }
             });
         }
 
