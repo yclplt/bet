@@ -3,14 +3,13 @@
 }
 
 .table-container {
-    width: 100%;
-    height: 100%;
+    width: 100vh;
+    height: 100vh;
     display: flex;
     flex-direction: column;
     align-items: stretch;
     overflow: auto;
     flex-grow: 1;
-    height: "100%";
 }
 
 .header-row {

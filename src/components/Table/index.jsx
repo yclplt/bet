@@ -1,5 +1,6 @@
 import React, { useReducer, useEffect } from 'react';
 import { VariableSizeList as List } from 'react-window';
+import AutoSizer from 'react-virtualized-auto-sizer';
 import './table.css';
 
 const initialState = {
@@ -53,7 +54,7 @@ const Table = ({ columns, data = [], onSelect }) => {
             <div
                 key={column?.accessorKey}
                 className="header-cell"
-                style={{ minWidth: column?.width || cellMinWidth }} 
+                style={{ minWidth: column?.width || cellMinWidth }}
             >
                 {column?.header}
             </div>
@@ -96,7 +97,7 @@ const Table = ({ columns, data = [], onSelect }) => {
         if (isClickable) {
             cellClassNames.push('clickable');
         }
-        
+
         cellClassNames.push(textAlign);
 
         return cellClassNames.join(' ');
@@ -117,27 +118,31 @@ const Table = ({ columns, data = [], onSelect }) => {
     return (
         <div className="table-container" >
             <div className="header-row">{getHeaders()}</div>
-            <List
-                height={window.innerHeight}
-                width={window.innerWidth}
-                itemCount={data?.length * 2}
-                itemSize={rowHeight}
-                >
-                {({ index, style }) => (
-                    <div style={style} className="table-row">
-                        {columns.map((column, columnIndex) => (
-                            <div
-                                key={column?.accessorKey}
-                                className={getCellClassName(index, columnIndex)}
-                                onClick={() => handleCellClick(index, columnIndex, renderCellValue(column, index))}
-                                style={{ minWidth: column?.width || cellMinWidth }}
-                            >
-                                {renderCellValue(column, index)}
+            <AutoSizer>
+                {({ height, width }) => (
+                    <List
+                        height={height}
+                        width={width}
+                        itemCount={data?.length * 2}
+                        itemSize={rowHeight}
+                    >
+                        {({ index, style }) => (
+                            <div style={style} className="table-row">
+                                {columns.map((column, columnIndex) => (
+                                    <div
+                                        key={column?.accessorKey}
+                                        className={getCellClassName(index, columnIndex)}
+                                        onClick={() => handleCellClick(index, columnIndex, renderCellValue(column, index))}
+                                        style={{ minWidth: column?.width || cellMinWidth }}
+                                    >
+                                        {renderCellValue(column, index)}
+                                    </div>
+                                ))}
                             </div>
-                        ))}
-                    </div>
+                        )}
+                    </List>
                 )}
-            </List>
+            </AutoSizer>
         </div>
     );
 };
