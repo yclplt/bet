@@ -114,7 +114,7 @@ const HomePage = () => {
 
     return (
         <>
-            <Table columns={columns} data={data} onSelect={(item) => setBetData(item)} />
+            <Table columns={columns} data={data} onSelect={(item) => setBetData(item)} loading={isLoading} />
             <Popup />
         </>
     )

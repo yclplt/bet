@@ -37,7 +37,7 @@ function reducer(state, action) {
     }
 }
 
-const Table = ({ columns, data = [], onSelect }) => {
+const Table = ({ columns, data = [], onSelect, loading }) => {
     const [state, dispatch] = useReducer(reducer, initialState);
     const rowCellHeight = 25;
     const rowHeaderHeight = 50;
@@ -117,32 +117,36 @@ const Table = ({ columns, data = [], onSelect }) => {
 
     return (
         <div className="table-container" >
-            <div className="header-row">{getHeaders()}</div>
-            <AutoSizer>
-                {({ height, width }) => (
-                    <List
-                        height={height}
-                        width={width}
-                        itemCount={data?.length}
-                        itemSize={rowHeight}
-                    >
-                        {({ index, style }) => (
-                            <div style={style} className="table-row">
-                                {columns.map((column, columnIndex) => (
-                                    <div
-                                        key={column?.accessorKey}
-                                        className={getCellClassName(index, columnIndex)}
-                                        onClick={() => handleCellClick(index, columnIndex, renderCellValue(column, index))}
-                                        style={{ minWidth: column?.width || cellMinWidth }}
-                                    >
-                                        {renderCellValue(column, index)}
+            <div className="header-row" >{getHeaders()}</div>
+            {
+                loading ? <div className="loading-indicator">Yükleniyor...</div> :
+                    <AutoSizer>
+                        {({ height, width }) => (
+                            <List
+                                ref={listRef}
+                                height={height}
+                                width={width}
+                                itemCount={data?.length}
+                                itemSize={rowHeight}
+                            >
+                                {({ index, style }) => (
+                                    <div style={style} className="table-row">
+                                        {columns.map((column, columnIndex) => (
+                                            <div
+                                                key={column?.accessorKey}
+                                                className={getCellClassName(index, columnIndex)}
+                                                onClick={() => handleCellClick(index, columnIndex, renderCellValue(column, index))}
+                                                style={{ minWidth: column?.width || cellMinWidth }}
+                                            >
+                                                {renderCellValue(column, index)}
+                                            </div>
+                                        ))}
                                     </div>
-                                ))}
-                            </div>
+                                )}
+                            </List>
                         )}
-                    </List>
-                )}
-            </AutoSizer>
+                    </AutoSizer>
+            }
         </div>
     );
 };
