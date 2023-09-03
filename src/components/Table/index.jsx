@@ -123,7 +123,7 @@ const Table = ({ columns, data = [], onSelect }) => {
                     <List
                         height={height}
                         width={width}
-                        itemCount={data?.length * 2}
+                        itemCount={data?.length}
                         itemSize={rowHeight}
                     >
                         {({ index, style }) => (

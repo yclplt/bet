@@ -42,3 +42,16 @@
     font-size: 20px;
     padding-top: 10px;
 }
+
+@media screen and (max-width: 500px) {
+    .popup {
+        width: 100%;
+        right: 0px;
+        padding: 0px;
+    }
+
+    .popup-content,
+    .popup>.popup-total {
+        padding: 10px;
+    }
+}
