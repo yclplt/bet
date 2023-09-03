@@ -123,7 +123,7 @@ const Table = ({ columns, data = [], onSelect, loading }) => {
                     <AutoSizer>
                         {({ height, width }) => (
                             <List
-                                height={height}
+                                height={height - 40 }
                                 width={width}
                                 itemCount={data?.length}
                                 itemSize={rowHeight}
